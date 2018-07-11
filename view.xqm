@@ -13,7 +13,7 @@ function view:main ()
   let $content :=
       <div class="col"> 
         <p>Чтобы создать голо-сование, нажмите...</p>
-        <form action="golosovalka/create-vote">
+        <form action="/golosovalka/create-vote">
             <button class="btn btn-primary">Создать</button>
         </form>
       </div>
