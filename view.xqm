@@ -18,7 +18,7 @@ function view:main ()
         </form>
       </div>
    return
-       $temlate update replace node .//toreplace[1] with $content
+       $temlate update replace node .//toreplace with $content
 }; 
 
 declare 
@@ -27,7 +27,7 @@ declare
   %output:method('xhtml')
 function view:master ()
 {
-  let $data := db:open('golosovalka' , 'data')/data/vote[@master=request:parameter('master')]
+  let $data := db:open( $view:db-name , 'data')/data/vote[@master=request:parameter('master')]
   let $temlate := doc('main-tpl.html')
   let $content :=
       <div class="col">
@@ -64,9 +64,6 @@ function view:master ()
    
    return
        $temlate update replace node .//toreplace with $content
-  
-  
-  
 }; 
 
 declare 
@@ -75,8 +72,7 @@ declare
   %output:method('xhtml')
 function view:vote ()
 {
-  
-  let $data := db:open('golosovalka' , 'data')/data/vote[@common=request:parameter('common')]
+  let $data := db:open( $view:db-name , 'data')/data/vote[@common=request:parameter('common')]
   let $temlate := doc('main-tpl.html')
   let $content := 
           <div class="col">
@@ -150,7 +146,7 @@ declare
   %output:method('xhtml')
 function view:result ()
 {
-  let $data := db:open('golosovalka' , 'data')/data/vote[@common=request:parameter('common')]
+  let $data := db:open( $view:db-name , 'data')/data/vote[@common=request:parameter('common')]
   let $temlate := doc('main-tpl.html')
   let $content := 
     <div class="col">

@@ -47,7 +47,7 @@ function model:update-vote ()
       <quote>{request:parameter('quote')}</quote>
       <questions>{ $questions }</questions>
     </meta>
-  let $data := db:open('golosovalka' , 'data')/data/vote[@master=request:parameter('master')]
+  let $data := db:open($model:db-name , 'data')/data/vote[@master=request:parameter('master')]
   return
     replace node $data//meta with $meta,
     db:output(web:redirect( 'master'  , map {"master": request:parameter('master'), "message":"Изменения успешно записаны"}))
@@ -59,7 +59,7 @@ declare
   %rest:GET
 function model:update-result ()
 {
-  let $data := db:open('golosovalka' , 'data')/data/vote[@common=request:parameter('common')]
+  let $data := db:open($model:db-name , 'data')/data/vote[@common=request:parameter('common')]
   let $result := 
       <result>
         {
