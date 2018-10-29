@@ -12,7 +12,6 @@ function model:create-vote ()
   let $hash := (random:uuid(), random:uuid())
   return
     model:new-vote ($hash)
-       
 };
 
 declare %updating function model:new-vote ($hash)
