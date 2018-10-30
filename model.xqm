@@ -1,7 +1,7 @@
 module namespace model = 'http://www.iro37.ru/golosovalka/model';
 import module namespace request = "http://exquery.org/ns/request";
 
-declare variable $model:db-name := 'golosovalka';
+declare variable $model:db-name := 'golosovalka-dev';
 
 declare 
   %updating 
