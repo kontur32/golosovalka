@@ -12,10 +12,9 @@ function view:vote ( $common, $message )
 {
   let $data := $data:vote ( $common )
   let $content := 
-          <div class="col">
+          <div >
             <h3>{ $data//meta/title/text() }</h3>
             <p><i>{ $message }</i></p>
-            <div class="col">
               { if ( $data:isOpen ( $data ) )
                 then ( )
                 else (
@@ -24,7 +23,6 @@ function view:vote ( $common, $message )
               }
               <p><i>Голосуют { $data/meta/quote/text() } участника</i></p>
               <p><i>Уже проголосовали { count( $data//results/result ) } участника</i></p>
-            </div>
             <hr/>
             {
               if 
