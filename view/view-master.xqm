@@ -1,7 +1,7 @@
 module namespace view = "http://www.iro37.ru/golosovalka/view";
 
 import module namespace request = "http://exquery.org/ns/request";
-import module namespace data = "http://www.iro37.ru/golosovalka/data" at "data.xqm";
+import module namespace data = "http://www.iro37.ru/golosovalka/data" at "../data.xqm";
 
 declare variable $view:db-name := $data:dbName;
 
@@ -12,7 +12,6 @@ declare
 function view:master ()
 {
   let $data := db:open( $view:db-name , 'data')/data/vote[@master=request:parameter('master')]
-  let $temlate := doc('main-tpl.html')
   let $content :=
       <div class="col">
         <h3>{$data/meta/title/text()}</h3>
@@ -47,5 +46,5 @@ function view:master ()
       </div>
    
    return
-       $temlate update replace node .//toreplace with $content
+       $data:mainTemlate update replace node .//toreplace with $content
 }; 

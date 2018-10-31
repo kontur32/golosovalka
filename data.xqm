@@ -10,5 +10,5 @@ declare variable $data:isOpen := function ( $data ) {
   count( $data/results/result ) < $data/meta/quote/data()
 };
 
-declare variable $data:mainTemlate := doc( "main-tpl.html" );
+declare variable $data:mainTemlate := doc( "src/main-tpl.html" );
 

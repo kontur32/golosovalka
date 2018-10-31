@@ -1,6 +1,6 @@
 module namespace view = "http://www.iro37.ru/golosovalka/view";
 
-import module namespace data = "http://www.iro37.ru/golosovalka/data" at "data.xqm";
+import module namespace data = "http://www.iro37.ru/golosovalka/data" at "../data.xqm";
 
 declare 
   %rest:path( "/golosovalka/vote" )
@@ -11,7 +11,6 @@ declare
 function view:vote ( $common, $message )
 {
   let $data := $data:vote ( $common )
-  let $temlate := doc( 'main-tpl.html' )
   let $content := 
           <div class="col">
             <h3>{ $data//meta/title/text() }</h3>
@@ -56,10 +55,11 @@ function view:vote ( $common, $message )
         }
           </div>
   return
-      $temlate update replace node .//toreplace with $content
+      $data:mainTemlate update replace node .//toreplace with $content
 };
 
 declare function view:multi ( $data ) {
+  let $isNeutral := if ( $data/@var = "neutral" ) then ( true() ) else ( false () )
   for $i in $data//questions/question
   return 
   <label for="q1" class="form-check">
@@ -85,6 +85,22 @@ declare function view:multi ( $data ) {
               Против
           </label>
       </div>
+      {
+      if ( $isNeutral )
+      then (
+        <div class="form-check">
+          <label class="form-check-label">
+              <input 
+              type="radio" 
+              class="form-check-input" 
+              name="{$i/@id}" 
+              value="neutral"/>
+              Воздержался
+          </label>
+      </div>
+      )
+      else ()
+      }
       <hr/>
   </label>
 };
@@ -92,6 +108,7 @@ declare function view:multi ( $data ) {
 declare function view:single ( $data ) {
   <label class="form-check">
   {
+    
     for $i in $data//questions/question
     return  
         <div class="form-check">
@@ -99,12 +116,30 @@ declare function view:single ( $data ) {
               <input 
               type="radio" 
               class="form-check-input" 
-              name="{$i/@id}" 
-              value="yes" 
+              name="q0" 
+              value="{$i/@id}" 
             /> 
                { $i/text() }
             </label>
           </div>
     }
+    {
+      let $isNeutral := if ( $data/@var = "neutral" ) then ( true() ) else ( false () )  
+      return
+      if ( $isNeutral )
+      then (
+        <div class="form-check">
+          <label class="form-check-label">
+              <input 
+              type="radio" 
+              class="form-check-input" 
+              name="q0" 
+              value="neutral"/>
+              Воздержался
+          </label>
+      </div>
+      )
+      else ()
+      }
   </label>
 };

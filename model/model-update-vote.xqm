@@ -1,7 +1,7 @@
 module namespace model = "http://www.iro37.ru/golosovalka/model";
 
 import module namespace request = "http://exquery.org/ns/request";
-import module namespace data = "http://www.iro37.ru/golosovalka/data" at "data.xqm";
+import module namespace data = "http://www.iro37.ru/golosovalka/data" at "../data.xqm";
 
 declare variable $model:db-name := $data:dbName;
 
