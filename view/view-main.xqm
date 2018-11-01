@@ -54,7 +54,7 @@ function view:main ()
 {
   let $content :=
       <div class="col"> 
-        <p>Чтобы создать голо-сование, нажмите...</p>
+        <p>Чтобы создать голосование, нажмите...</p>
         <form action="/golosovalka/create-vote">
             { $view:radio }
             <button class="btn btn-primary">Создать</button>

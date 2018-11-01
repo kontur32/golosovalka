@@ -8,13 +8,17 @@ declare variable $view:db-name := $data:dbName;
 declare 
   %rest:path("/golosovalka/master")
   %rest:GET
+  %rest:query-param ( "master", "{ $master }")
   %output:method('xhtml')
-function view:master ()
+function view:master ( $master )
 {
-  let $data := db:open( $view:db-name , 'data')/data/vote[@master=request:parameter('master')]
+  let $data :=  $data:vote ( $master )
+  return 
+  if ( $data:isOpen ( $data ) or not ($data/meta/quote) )
+  then (
   let $content :=
       <div class="col">
-        <h3>{$data/meta/title/text()}</h3>
+        <h3>{ $data/meta/title/text() }</h3>
         <p><i>{request:parameter('message')}</i></p>
         <a href="vote?common={$data/@common}">Ссылка для голосования</a>
         <form action="update-vote">
@@ -38,7 +42,7 @@ function view:master ()
             <label for="name">Количество участников</label>
             <input type="number" name="quote" 
             class="col-sm-1 form-control"
-            value="{$data//meta/quote/text()}"/>
+            value="{$data/meta/quote/text()}"/>
           </div>
           <input type="text" name="master" value="{$data/@master}" hidden=""/>
           <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -47,4 +51,18 @@ function view:master ()
    
    return
        $data:mainTemlate update replace node .//toreplace with $content
+  )
+  else (
+   let $content :=
+      <div class="col">
+        <p><i>Голосование "{ $data/meta/title/text()}" завершено</i></p>
+        <a href="vote?common={ $data/@common/data() }">Результаты голосования</a>
+        <form action="delete-vote">
+        <input type="text" name="master" value="{$data/@master}" hidden=""/>
+          <button type="submit" class="btn btn-primary">Удалить</button>
+        </form>
+      </div>
+    return
+       $data:mainTemlate update replace node .//toreplace with $content
+  )
 }; 
