@@ -1,0 +1,57 @@
+<div id="accordion">
+	<div class="card">
+		<div class="card-header" id="headingOne">
+		  <h5 class="mb-0">
+			<p class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				Настройки голосования
+			</p>
+		  </h5>
+		</div>
+
+		<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+		  <div class="card-body">
+			<div>
+				<div>
+				  <span>Количество ответов:</span>
+					<div class="form-check">
+					  <label class="form-check-label" for="single">
+						  <input name="type" type="radio" value="single" id="single" checked="true">Один из списка</input>
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label" for="multi">
+						  <input name="type" type="radio" value="multi" id="multi">Несколько из списка</input>
+					  </label>
+					</div>
+				 </div>
+				<div>
+				  <span>Варинаты ответов:</span>
+					<div class="form-check">
+					  <label class="form-check-label" for="yesNo">
+						  <input name="var" type="radio" value="yesNo" id="yesNo" checked="true">За / Против</input>
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label" for="neutral">
+						  <input name="var" type="radio" value="neutral" id="neutral">За / Против / Воздержался</input>
+					  </label>
+					</div>
+				 </div>       
+				   <div>
+					<span>Способ подсчета голосов:</span>
+					  <div class="form-check">
+						<label class="form-check-label" for="count1">
+							<input name="counting" type="radio" value="simple" id="count1" checked="true">Простое большинство</input>
+						</label>
+					  </div>
+					  <div class="form-check">
+						<label class="form-check-label" for="count2">
+							<input name="counting" type="radio" value="qualified" id="count2">Квалифицированное большинство</input>
+						</label>
+					  </div>
+				   </div>
+			  </div>
+		  </div>
+		</div>
+	</div>
+</div>

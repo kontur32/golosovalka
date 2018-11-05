@@ -15,4 +15,3 @@ declare variable $data:isOpen := function ( $data ) {
 };
 
 declare variable $data:mainTemlate := doc( "src/main-tpl.html" );
-
