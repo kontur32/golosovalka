@@ -25,9 +25,9 @@ function model:update-result ()
       </result>
     return 
       insert node $result into $data/results,
-      db:output(web:redirect( 'vote'  , map {"common": request:parameter('common'), "message":"Изменения успешно записаны"}))  
+      update:output(web:redirect( 'vote'  , map {"common": request:parameter('common'), "message":"Изменения успешно записаны"}))  
   )
   else (
-    db:output(web:redirect( 'vote'  , map {"common": request:parameter('common'), "message":"Голосование завершено"})) 
+    update:output(web:redirect( 'vote'  , map {"common": request:parameter('common'), "message":"Голосование завершено"})) 
   )    
 };

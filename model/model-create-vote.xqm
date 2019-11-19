@@ -33,5 +33,5 @@ declare %updating function model:new-vote ( $hash, $type, $var, $counting )
       </vote>
   return
        insert node $vote into db:open($model:db-name, 'data')/data,
-       db:output(web:redirect( 'master'  , map {"master": $hash[1], "message":"Новый опрос успешно создан"}))
+       update:output(web:redirect( 'master'  , map {"master": $hash[1], "message":"Новый опрос успешно создан"}))
 };

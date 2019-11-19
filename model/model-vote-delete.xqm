@@ -14,5 +14,5 @@ function model:update-vote ( $master )
 {
   insert node $data:vote ( $master ) into $data:archive,
   delete node $data:vote ( $master ),
-  db:output( web:redirect( "/golosovalka" ) )
+  update:output( web:redirect( "/golosovalka" ) )
 };

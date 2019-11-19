@@ -30,5 +30,5 @@ function model:update-vote ( $master, $questions, $title, $quote  )
   let $data := $data:vote ( $master )
   return
     replace node $data//meta with $meta,
-    db:output( web:redirect( 'master'  , map {"master": $master, "message":"Изменения успешно записаны"}) )
+    update:output( web:redirect( 'master'  , map {"master": $master, "message":"Изменения успешно записаны"}) )
 };
